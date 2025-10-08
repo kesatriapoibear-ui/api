@@ -2,6 +2,7 @@
   "name": "joocode-panel-api",
   "version": "1.0.0",
   "description": "Panel Creator Backend",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
