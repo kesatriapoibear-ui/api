@@ -1,31 +1,16 @@
-// index.js
-import express from "express"
-import panelRoutes from "./panel.js"
-import aiRoutes from "./ai.js" // file ai.js berisi route Perplexity
+import express from "express";
+import { createServer } from "vercel-express";
+import panelRoutes from "./api/panel.js";
+import cors from "cors";
 
-const app = express()
-app.use(express.json())
+const app = express();
+app.use(cors());
+app.use(express.json());
 
-// Gabungkan semua route panel
+// Auto-load routes dari panel.js
 for (const route of panelRoutes) {
-  app[route.method.toLowerCase()](route.path, route.handler)
+  app[route.method.toLowerCase()](route.path, route.handler);
 }
 
-// Gabungkan route AI
-for (const route of aiRoutes) {
-  app[route.method.toLowerCase()](route.path, route.handler)
-}
-
-// Root endpoint
-app.get("/", (req, res) => {
-  res.json({
-    status: true,
-    message: "API is running",
-    routes: [
-      ...panelRoutes.map(r => r.path),
-      ...aiRoutes.map(r => r.path)
-    ]
-  })
-})
-
-export default app
+// Export serverless function untuk Vercel
+export default createServer(app);
