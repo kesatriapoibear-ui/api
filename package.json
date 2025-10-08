@@ -1,17 +1,34 @@
 {
-  "name": "joocode-panel-api",
+  "name": "perplexity-panel-api",
   "version": "1.0.0",
+  "description": "Vercel-ready API for Panel + Perplexity AI using Puppeteer-Core",
   "type": "module",
+  "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "dev": "vercel dev",
+    "start": "node index.js",
+    "build": "echo 'No build needed for Vercel serverless'"
   },
+  "keywords": [
+    "vercel",
+    "puppeteer-core",
+    "chrome-aws-lambda",
+    "express",
+    "puppeteer-extra",
+    "perplexity-ai",
+    "serverless"
+  ],
+  "author": "YourName",
+  "license": "MIT",
   "dependencies": {
+    "chrome-aws-lambda": "^20.2.1",
     "express": "^4.18.2",
-    "node-fetch": "^3.3.2",
+    "node-fetch": "^3.4.0",
+    "puppeteer-core": "^21.3.3",
     "puppeteer-extra": "^3.3.4",
-    "puppeteer-extra-plugin-stealth": "^2.11.1"
+    "puppeteer-extra-plugin-stealth": "^2.12.1"
   },
   "engines": {
-    "node": ">=18.x"
+    "node": "20.x"
   }
 }
