@@ -247,7 +247,7 @@ export default [
   },
   {
     method: "GET",
-    path: "/api/",
+    path: "/",
     handler: (req, res) => {
       res.json({
         message: "Panel API is running",
