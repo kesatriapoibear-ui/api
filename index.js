@@ -1,5 +1,5 @@
 import express from "express"
-import panelRoutes from "../api/panel.js"
+import panelRoutes from "/api/panel/panel.js"
 
 const app = express()
 app.use(express.json())
