@@ -1,23 +1,30 @@
+// index.js
 import express from "express"
-import panelRoutes from "./api/panel.js"
-import aiRoutes from "./api/ai.js"
+import panelRoutes from "./panel.js"
+import aiRoutes from "./ai.js" // file ai.js berisi route Perplexity
 
 const app = express()
 app.use(express.json())
 
-// Gabungkan semua route
-const routes = [...panelRoutes, ...aiRoutes]
-
-for (const route of routes) {
+// Gabungkan semua route panel
+for (const route of panelRoutes) {
   app[route.method.toLowerCase()](route.path, route.handler)
 }
 
-// Endpoint root
+// Gabungkan route AI
+for (const route of aiRoutes) {
+  app[route.method.toLowerCase()](route.path, route.handler)
+}
+
+// Root endpoint
 app.get("/", (req, res) => {
   res.json({
-    message: "Server is running",
-    status: "online",
-    endpoints: routes.map(r => ({ method: r.method, path: r.path })),
+    status: true,
+    message: "API is running",
+    routes: [
+      ...panelRoutes.map(r => r.path),
+      ...aiRoutes.map(r => r.path)
+    ]
   })
 })
 
