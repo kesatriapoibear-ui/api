@@ -6,7 +6,7 @@ const app = express()
 app.use(express.json())
 
 for (const route of panelRoutes) {
-  app[route.method.toLowerCase()](`/api/panel${route.path}`, route.handler)
+  app[route.method.toLowerCase()](`/api${route.path}`, route.handler)
 }
 
 export default app
