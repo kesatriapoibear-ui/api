@@ -6,8 +6,6 @@
     • Error Fix Sendiri
     • Jangan Hapus Ni Credit
     • See U Again
-    
-    Converted to Modular Version by ChatGPT
 */
 
 import fetch from "node-fetch"
@@ -22,7 +20,7 @@ const loc = process.env.PTERO_LOCATION_ID || "1"
 export default [
   {
     method: "POST",
-    path: "/api/create",
+    path: "/create",
     handler: async (req, res) => {
       const { username, email, ram, disk, cpu } = req.body
       const password = username + Math.floor(Math.random() * 10000)
@@ -118,7 +116,7 @@ export default [
   },
   {
     method: "GET",
-    path: "/api/servers",
+    path: "/servers",
     handler: async (req, res) => {
       try {
         const fetchServers = await fetch(`${domain}/api/application/servers`, {
@@ -140,7 +138,7 @@ export default [
   },
   {
     method: "DELETE",
-    path: "/api/server/:id",
+    path: "/server/:id",
     handler: async (req, res) => {
       try {
         const id = req.params.id
@@ -159,7 +157,7 @@ export default [
   },
   {
     method: "POST",
-    path: "/api/create-admin",
+    path: "/create-admin",
     handler: async (req, res) => {
       const { username, email } = req.body
       const password = username + Math.floor(Math.random() * 10000)
@@ -198,7 +196,7 @@ export default [
   },
   {
     method: "GET",
-    path: "/api/admins",
+    path: "/admins",
     handler: async (req, res) => {
       try {
         const fetchUsers = await fetch(`${domain}/api/application/users`, {
@@ -228,7 +226,7 @@ export default [
   },
   {
     method: "DELETE",
-    path: "/api/admin/:id",
+    path: "/admin/:id",
     handler: async (req, res) => {
       try {
         const id = req.params.id
@@ -247,7 +245,7 @@ export default [
   },
   {
     method: "GET",
-    path: "/api/",
+    path: "/",
     handler: (req, res) => {
       res.json({
         message: "Panel API is running",
