@@ -245,17 +245,18 @@ export default [
   },
   {
     method: "GET",
-    path: "/",
+    path: "/api/",
     handler: (req, res) => {
       res.json({
         message: "Panel API is running",
         endpoints: {
-          "POST /create": "Create panel",
-          "GET /servers": "List all servers",
-          "DELETE /server/:id": "Delete server",
-          "POST /create-admin": "Create admin user",
-          "GET /admins": "List admins",
-          "DELETE /admin/:id": "Delete admin",
+         "POST /api/panel/create",
+      "GET /api/panel/servers",
+      "DELETE /api/panel/server/:id", 
+      "POST /api/panel/create-admin",
+      "GET /api/panel/admins",
+      "DELETE /api/panel/admin/:id",
+      "GET /api/panel/",
         },
         status: "online",
       })
