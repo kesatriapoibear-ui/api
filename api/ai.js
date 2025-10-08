@@ -1,23 +1,21 @@
-import puppeteer from "puppeteer-extra"
+// api/ai.js
+import puppeteer from "puppeteer-core"
+import chromium from "chrome-aws-lambda"
 import StealthPlugin from "puppeteer-extra-plugin-stealth"
+import puppeteerExtra from "puppeteer-extra"
 
-puppeteer.use(StealthPlugin())
+puppeteerExtra.use(StealthPlugin({ evasions: [] }))
 
-const VALID_MODELS = [
-  "r1-1776",
-  "sonar-pro",
-  "sonar",
-  "sonar-reasoning-pro",
-  "sonar-reasoning",
-]
+const VALID_MODELS = ["r1-1776", "sonar-pro", "sonar", "sonar-reasoning-pro", "sonar-reasoning"]
 
-// Fungsi safe untuk tanya Perplexity
 async function askPerplexity(text, model = "r1-1776") {
   if (!VALID_MODELS.includes(model)) throw new Error(`Model tidak valid: ${model}`)
 
-  const browser = await puppeteer.launch({
-    headless: true,
-    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+  const browser = await puppeteerExtra.launch({
+    args: chromium.args,
+    defaultViewport: chromium.defaultViewport,
+    executablePath: await chromium.executablePath,
+    headless: chromium.headless,
   })
 
   try {
