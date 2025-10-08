@@ -22,7 +22,7 @@ const loc = process.env.PTERO_LOCATION_ID || "1"
 export default [
   {
     method: "POST",
-    path: "/create",
+    path: "/api/create",
     handler: async (req, res) => {
       const { username, email, ram, disk, cpu } = req.body
       const password = username + Math.floor(Math.random() * 10000)
@@ -118,7 +118,7 @@ export default [
   },
   {
     method: "GET",
-    path: "/servers",
+    path: "/api/servers",
     handler: async (req, res) => {
       try {
         const fetchServers = await fetch(`${domain}/api/application/servers`, {
@@ -140,7 +140,7 @@ export default [
   },
   {
     method: "DELETE",
-    path: "/server/:id",
+    path: "/api/server/:id",
     handler: async (req, res) => {
       try {
         const id = req.params.id
@@ -159,7 +159,7 @@ export default [
   },
   {
     method: "POST",
-    path: "/create-admin",
+    path: "/api/create-admin",
     handler: async (req, res) => {
       const { username, email } = req.body
       const password = username + Math.floor(Math.random() * 10000)
@@ -198,7 +198,7 @@ export default [
   },
   {
     method: "GET",
-    path: "/admins",
+    path: "/api/admins",
     handler: async (req, res) => {
       try {
         const fetchUsers = await fetch(`${domain}/api/application/users`, {
@@ -228,7 +228,7 @@ export default [
   },
   {
     method: "DELETE",
-    path: "/admin/:id",
+    path: "/api/admin/:id",
     handler: async (req, res) => {
       try {
         const id = req.params.id
@@ -247,17 +247,17 @@ export default [
   },
   {
     method: "GET",
-    path: "/",
+    path: "/api/",
     handler: (req, res) => {
       res.json({
         message: "Panel API is running",
         endpoints: {
-          "POST /create": "Create panel",
-          "GET /servers": "List all servers",
-          "DELETE /server/:id": "Delete server",
-          "POST /create-admin": "Create admin user",
-          "GET /admins": "List admins",
-          "DELETE /admin/:id": "Delete admin",
+          "POST /api/create": "Create panel",
+          "GET /api/servers": "List all servers",
+          "DELETE /api/server/:id": "Delete server",
+          "POST /api/create-admin": "Create admin user",
+          "GET /api/admins": "List admins",
+          "DELETE /api/admin/:id": "Delete admin",
         },
         status: "online",
       })
