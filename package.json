@@ -1,19 +1,17 @@
 {
   "name": "joocode-panel-api",
   "version": "1.0.0",
-  "description": "Panel Creator Backend",
   "type": "module",
-  "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "node index.js"
+    "start": "node index.js"
   },
   "dependencies": {
     "express": "^4.18.2",
-    "cors": "^2.8.5",
-    "node-fetch": "^3.3.2"
+    "node-fetch": "^3.3.2",
+    "puppeteer-extra": "^3.3.4",
+    "puppeteer-extra-plugin-stealth": "^2.11.1"
   },
   "engines": {
-    "node": ">=16.x"
+    "node": ">=18.x"
   }
 }
